@@ -54,18 +54,3 @@ module "rds" {
   vpc_security_group_ids = ["sg-0123456789abcdef"]
   db_subnet_group_name = "my-subnet-group"
 }
-
-## Variáveis
-
-| Variável                     | Tipo     | Descrição                                                              | Padrão          |
-| ---------------------------- | -------- | ---------------------------------------------------------------------- | --------------- |
-| `db_instance_class`           | string   | Tipo de instância RDS (ex: db.t3.micro)                                | `db.t3.micro`   |
-| `allocated_storage`           | number   | Tamanho do armazenamento em GB                                         | `20`            |
-| `engine`                      | string   | Tipo de engine do banco de dados (ex: mysql, postgres)                 | `mysql`         |
-| `engine_version`              | string   | Versão do banco de dados (ex: 8.0 para MySQL, 13 para PostgreSQL)      | `8.0`           |
-| `db_name`                     | string   | Nome do banco de dados                                                 | `"mydb"`        |
-| `username`                    | string   | Usuário administrador do banco de dados                                | `"admin"`       |
-| `password`                    | string   | Senha do administrador do banco de dados                               | N/A (necessário)|
-| `vpc_security_group_ids`      | list     | Lista de IDs dos security groups que permitirão acesso ao RDS          | `[]`            |
-| `db_subnet_group_name`        | string   | Nome do grupo de subnets onde o RDS será provisionado                  | `""`            |
-

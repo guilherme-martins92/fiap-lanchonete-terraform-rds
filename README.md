@@ -6,11 +6,6 @@ Este repositório contém código Terraform para provisionar e configurar um ban
 
 - [Pré-requisitos](#pré-requisitos)
 - [Recursos Provisionados](#recursos-provisionados)
-- [Uso](#uso)
-- [Variáveis](#variáveis)
-- [Saídas](#saídas)
-- [Comandos Úteis](#comandos-úteis)
-- [Licença](#licença)
 
 ## Pré-requisitos
 

@@ -9,7 +9,7 @@ resource "aws_vpc" "mainRDS" {
 }
 
 resource "aws_subnet" "publicRDS" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.mainRDS.id
   cidr_block = "10.0.2.0/24"
 
   tags = {
@@ -20,7 +20,7 @@ resource "aws_subnet" "publicRDS" {
 # Create the security group for the RDS instance
 resource "aws_security_group" "rds_sg" {
   name   = "rds-sqlserver-sg"
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.mainRDS.id
 
   ingress {
     from_port   = 1433

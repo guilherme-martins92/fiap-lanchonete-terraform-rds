@@ -56,7 +56,7 @@ resource "aws_db_instance" "main" {
   instance_class     = "db.t3.micro"
   identifier         = "rds-sqlserver"
   db_name            = "fiap-sa"
-  password           = @Fiap123
+  password           = "@Fiap123"
   port               = 1433
   skip_final_snapshot = true
   username           = "admin"

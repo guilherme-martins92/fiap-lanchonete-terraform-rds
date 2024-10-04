@@ -39,7 +39,7 @@ resource "aws_security_group" "rds_sg" {
 
 resource "aws_db_subnet_group" "main" {
   name       = "rds-sqlserver-subnet-group"
-  subnet_ids = ["vpc-pvdzosqeerps"]
+  subnet_ids = aws_subnet.publicRDS.id
 
   tags = {
     Name = "rds-sqlserver-subnet-group"

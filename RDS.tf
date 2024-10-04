@@ -10,10 +10,23 @@ resource "aws_vpc" "mainRDS" {
 
 resource "aws_subnet" "publicRDS" {
   vpc_id     = aws_vpc.mainRDS.id
-  cidr_block = "10.0.2.0/24"
+  cidr_block = "10.0.1.0/24"
+  availability_zone = "us-east-1a"
+  assign_ipv6_address_on_creation = false
+  map_public_ip_on_launch = true 
 
   tags = {
     Name = "rds-public-subnet"
+  }
+}
+
+resource "aws_subnet" "privateRDS" {
+  vpc_id     = aws_vpc.mainRDS.id
+  cidr_block = "10.0.0.0/24"
+  availability_zone = "us-east-1b"
+
+  tags = {
+    Name = "rds-private-subnet"
   }
 }
 
@@ -39,7 +52,7 @@ resource "aws_security_group" "rds_sg" {
 
 resource "aws_db_subnet_group" "main" {
   name       = "rds-sqlserver-subnet-group"
-  subnet_ids = aws_subnet.publicRDS.id
+  subnet_ids = [aws_subnet.publicRDS.id,aws_subnet.privateRDS.id]
 
   tags = {
     Name = "rds-sqlserver-subnet-group"
@@ -56,7 +69,7 @@ resource "aws_db_instance" "main" {
   instance_class     = "db.t3.micro"
   identifier         = "rds-sqlserver"
   db_name            = "fiap-sa"
-  password           = "@Fiap12345678"
+  password           = var.rds_password
   port               = 1433
   skip_final_snapshot = true
   username           = "admin"
